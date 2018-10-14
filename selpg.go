@@ -23,9 +23,9 @@ func Parser(p *selpg_args){
     pflag.IntVarP(&p.s_page,"start","s",0,"首页")
     pflag.IntVarP(&p.e_page,"end","e",0,"尾页")
     pflag.IntVarP(&p.page_line,"linenum","l",4,"打印的每页行数")
-	  pflag.BoolVarP(&p.is_f,"arg_f","f",false,"是否用换页符")
-	  pflag.StringVarP(&p.print_dest,"dest","d","","打印目的地")
-	  pflag.Parse()
+    pflag.BoolVarP(&p.is_f,"arg_f","f",false,"是否用换页符")
+    pflag.StringVarP(&p.print_dest,"dest","d","","打印目的地")
+    pflag.Parse()
 }
 
 //参数处理
@@ -104,9 +104,9 @@ func processInput(selarg * selpg_args) {
 		err1 error
 		err2 error
 		err3 error
-    err4 error
+                err4 error
 		line string     //当前行数据
-    char1 byte      //当前字符
+                char1 byte      //当前字符
 		cmd *exec.Cmd   //Cmd结构表示一个正在准备或者正在运行的外部命令
 		stdin io.WriteCloser  //Write方法和Closer方法的结合
 	)
@@ -119,14 +119,14 @@ func processInput(selarg * selpg_args) {
 		}
 	}
 
-  //print_dest 打印地
+        //print_dest 打印地
 	if selarg.print_dest != "" {
-    //exec.Command返回cmd结构来执行带有相关参数的命令（Path参数和Args参数）
+        //exec.Command返回cmd结构来执行带有相关参数的命令（Path参数和Args参数）
 		cmd = exec.Command("cat","-n")
-    //返回一个连接到command标准输入的管道pipe
+        //返回一个连接到command标准输入的管道pipe
 		stdin, err2 = cmd.StdinPipe()
 		if err2 != nil {
-      //采用默认格式将其参数格式化并写入标准输出。总是会在相邻参数的输出之间添加空格并在输出结束后添加换行符。
+        //采用默认格式将其参数格式化并写入标准输出。总是会在相邻参数的输出之间添加空格并在输出结束后添加换行符。
 			fmt.Println(err2)
 		}
 	} else {
@@ -138,9 +138,9 @@ func processInput(selarg * selpg_args) {
   //NewReader相当于NewReaderSize(rd, 4096)
   //NewReaderSize将rd封装成一个带缓存的 bufio.Reader对象，缓存大小由size指定（如果小于16则会被设置为16）。
 	rd := bufio.NewReader(fin)
-  page_num = 1
-  line_num = 0
-  //不用换页符换页
+        page_num = 1
+        line_num = 0
+        //不用换页符换页
 	if selarg.is_f == false {
 		for true {
 			line, err3 = rd.ReadString('\n')
